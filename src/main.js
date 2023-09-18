@@ -6,42 +6,32 @@ let moveInputEl;
 var front_board = [[0, 2, 0, 0], [0, 2, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
 var score = 0;
 
-
-// async function greet() {
-//   // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-//   greetMsgEl.textContent = await invoke("greet", { name: greetInputEl.value });
-// }
-
-// window.addEventListener("DOMContentLoaded", () => {
-//   greetInputEl = document.querySelector("#greet-input");
-//   greetMsgEl = document.querySelector("#greet-msg");
-//   document.querySelector("#greet-form").addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     greet();
-//   });
-// });
-
 function restart_game(){
   console.log("restarting game");
   front_board = [[0, 2, 0, 0], [0, 2, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
   score = 0
+  let restart_display = document.getElementById("game_over");
+  if(restart_display!=null){
+    restart_display.remove();
+  }
+  display_table(front_board);
+
 }
 
 async function player_move(event) {
   let rust_board;
   let rust_score;
   let game_over = false;
-  // console.log(event.key)
+
   debugger
   [rust_board, rust_score, game_over] = await invoke("player_move", { input: event.key, board: front_board, score: score});
-  // console.log(rust_board);
-  // console.log(rust_score);
+
   front_board = rust_board;
   score = rust_score;
-  // console.log(score);
+
   debugger
   display_table(rust_board);
-  // console.log(game_over);
+
   if (game_over){
     display_game_over();
   }
@@ -53,10 +43,15 @@ window.addEventListener("keydown", (event) => {
 function display_game_over(){
   let game_over_div = document.createElement("div");
   game_over_div.className = "game_over";
+  game_over_div.id = "game_over";
 
   let restart_button = document.createElement("button");
   restart_button.innerHTML = "Restart";
-  restart_button.onclick="restart_game()";
+  restart_button.onClick="restart_game()";
+  restart_button.addEventListener("click", () => {
+    restart_game();
+  }
+  )
 
   let game_over = document.createElement("h1");
   game_over.innerHTML = "GAME OVER!";
@@ -83,7 +78,7 @@ function display_table(table_values){
     for(let j=0; j<=3; j++){
       let cell = row.insertCell(j);
       cell.innerHTML = table_values[i][j];
-      // console.log(numbers[table_values[i][j]]);
+
       cell.className = numbers[table_values[i][j]];
     }
   }
@@ -108,11 +103,5 @@ const numbers = {
   2048: "twenty-forty-eight"
 };
 
-display_table(front_board);
-// window.addEventListener("DOMContentLoaded", () => {
-//   moveInputEl = document.querySelector("#player-move-input");
-//   document.querySelector("#player-move-form").addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     player_move();
-//   });
-// });
+
+restart_game();
