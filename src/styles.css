@@ -1,68 +1,114 @@
-body{
-  background-color: bisque;
+:root {
+  --gray-2048: rgb(119, 110, 100);
 }
 
-table td{
+body {
+  background-color: rgb(251, 248, 240);
+  margin: 0px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.header {
+  color: var(--gray-2048);
+  font-size: 100px;
+  letter-spacing: 5px;
+  margin: 0px;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+}
+
+table td {
   border: solid 2px darkgray;
   border-radius: 2px;
   width: 50px;
   height: 50px;
   padding: 10px;
   margin: 0px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+  font-size: 2.5em;
+  color: white;
 }
 
-.game_over{
-  background-color: rgba(240, 240, 240, 50);
+.game_over {
+  background-color: rgba(240, 240, 240, .75);
   z-index: 10;
   height: 100%;
   width: 100%;
+  position: absolute;
+  top: 0px;
+  text-align: center;
+  color: var(--gray-2048);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-
-.zero{
-  background:white;
+.game_over button {
+  width: 120px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: white;
+  border: solid 2px gray;
 }
+
+.zero {
+  background: white;
+}
+
 .two {
   background-color: rgb(255, 225, 100);
 }
 
-.four{
+.four {
   background-color: rgb(255, 205, 100);
 }
 
-.eight{
+.eight {
   background-color: rgb(255, 185, 100);
 }
 
-.sixteen{
+.sixteen {
   background-color: rgb(255, 165, 80);
+  font-size: 2em;
 }
 
-.thirty-two{
+.thirty-two {
   background-color: rgb(255, 165, 60);
+  font-size: 2em;
 }
 
-.sixty-four{
+.sixty-four {
   background-color: rgb(255, 165, 40);
+  font-size: 2em;
 }
 
-.one-twenty-eight{
+.one-twenty-eight {
   background-color: rgb(255, 125, 20);
+  font-size: 1.5em;
 }
 
-.two-fifty-six{
+.two-fifty-six {
   background-color: rgb(255, 105, 20);
+  font-size: 1.5em;
 }
 
-.five-twelve{
+.five-twelve {
   background-color: rgb(255, 85, 20);
 }
 
-.ten-twenty-four{
+.ten-twenty-four {
   background-color: rgb(255, 65, 20);
+  font-size: 1.2em;
 }
 
-.twenty-forty-eight{
+.twenty-forty-eight {
   background-color: rgb(255, 45, 20);
+  font-size: 1.2em;
 }
